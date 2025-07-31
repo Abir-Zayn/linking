@@ -208,3 +208,20 @@ export const visibilities = ["public", "private"];
 - Responsive design with Tailwind CSS
 - Component-based architecture for reusability
 - Optimized asset loading with Next.js Image component
+
+### Data Flow for the Sign Up/Sign In with Google
+- User clicks `Sign in with Google`.
+  → `handleSignIn()` fires `authClient.signIn.social({ provider: "google" }).`
+- Browser is redirected to Google OAuth consent screen.
+  - After consent, Google redirects to
+    https://your-app.com/api/auth/callback/google?code=…&state=….
+- Better-Auth looks up the Google sub (unique user id) in account.accountId.
+  `• If not found → new user:
+  – Insert row into user table.
+  – Insert row into account table with Google tokens & scopes.
+  • If found → existing user:
+  – Update tokens in account.
+  – Update updatedAt in user.`
+- A new session row is created, linked to the user.id. 
+- An encrypted session cookie is set in the browser (handled by nextCookies plugin).
+  User is redirected back to the page you configured (defaults to /).

@@ -28,6 +28,7 @@ const Page = () => {
             </Link>
 
                 <div className='description'>
+                    {/* 5-star review */}
                     <section>
                         <figure>
                             {

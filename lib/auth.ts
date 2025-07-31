@@ -6,8 +6,8 @@ import {nextCookies} from "better-auth/next-js";
 
 export const auth = betterAuth({
     database: drizzleAdapter(db, {
-        provider: 'pg',
-        schema ,
+        provider: 'pg',  // Postgres driver
+        schema ,  // Drizzle schema
     }),
     socialProviders : {
         google : {
@@ -15,6 +15,6 @@ export const auth = betterAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         }
     },
-    plugins : [nextCookies()],
+    plugins : [nextCookies()], // Use next cookies for session management
     baseURL : process.env.NEXT_PUBLIC_BASE_URL!,
 })
