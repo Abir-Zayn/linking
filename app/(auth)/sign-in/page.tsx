@@ -12,6 +12,8 @@ const Page = () => {
         return await authClient.signIn.social({
             provider: 'google'
         })
+        // Better-Auth will redirect to Google, then to /api/auth/callback/google,
+        // then create or update the DB rows automatically.
     };
 
     return (
