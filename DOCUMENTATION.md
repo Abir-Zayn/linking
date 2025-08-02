@@ -20,7 +20,7 @@ linking/
 │   │   └── sign-in/              # Sign-in page (placeholder)
 │   ├── (root)/                   # Main application routes
 │   │   ├── layout.tsx            # Root layout with Navbar
-│   │   ├── page.tsx              # Homepage ("/")
+│   │   ├── Page.tsx              # Homepage ("/")
 │   │   └── profile/
 │   │       └── [id]/
 │   │           └── page.tsx      # Dynamic user profile page

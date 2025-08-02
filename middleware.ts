@@ -1,6 +1,8 @@
 import {NextRequest, NextResponse} from "next/server";
 import {auth} from "@/lib/auth";
 import {headers} from "next/headers";
+import aj from "@/lib/arcjet";
+import {detectBot, shield} from "arcjet";
 
 export async function middleware(
     request:NextRequest,
@@ -16,6 +18,12 @@ export async function middleware(
 
     return NextResponse.next();
 }
+
+const validate = aj.withRule(shield( {mode:'LIVE'} ))
+    .withRule(detectBot({mode: 'LIVE',
+        allow: ['CATEGORY:SEARCH_ENGINE', 'G00G1E_CRAWLER']
+    }));
+
 
 export const config = {
     matcher: [
